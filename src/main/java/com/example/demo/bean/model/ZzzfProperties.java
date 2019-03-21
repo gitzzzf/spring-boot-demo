@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "com.zzzf")
 public class ZzzfProperties {
-//    @Value("${com.zzzf.name}")
+    @Value("${com.zzzf.name}")
     private String name;
 
-//    @Value("${com.zzzf.sex}")
+    @Value("${com.zzzf.sex}")
     private String sex;
 
-//    @Value("${com.random.int}")
+    @Value("${com.random.int}")
     private int age;
 
-//    @Value("${com.zzzf.desc}")
+    @Value("${com.zzzf.desc}")
     private String desc;
 
     public String getDesc() {

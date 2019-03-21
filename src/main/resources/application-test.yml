@@ -20,13 +20,6 @@ spring:
         max-wait: 1000
         test-on-borrow: false
 
-  # 这里连接的是test03
-#  rabbitmq:
-#    host: 47.93.157.59
-#    port: 5632
-#    username: rabbit
-#    password: 'rbDMmPQHFq'
-
 
 
 
