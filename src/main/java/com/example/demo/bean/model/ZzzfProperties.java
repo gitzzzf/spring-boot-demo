@@ -21,7 +21,7 @@ public class ZzzfProperties {
     @Value("${com.zzzf.sex}")
     private String sex;
 
-    @Value("${com.random.int}")
+    @Value("${com.zzzf.age}")
     private int age;
 
     @Value("${com.zzzf.desc}")

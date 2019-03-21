@@ -7,10 +7,9 @@ spring:
     username: root
     password:
   redis:
-    # 这里连接的是test03, 公网，公司访问：47.93.157.59，内网，VPN访问：10.30.139.235
-    host: 47.93.157.59
-    port: 2333
-    password: xtaaG9NfWEga
+    host: 127.0.0.1
+    port: 6379
+    password:
     jedis:
       pool:
         max-active: 10
@@ -19,13 +18,6 @@ spring:
         min-idle: 0
         max-wait: 1000
         test-on-borrow: false
-
-  # 这里连接的是test03
-#  rabbitmq:
-#    host: 47.93.157.59
-#    port: 5632
-#    username: rabbit
-#    password: 'rbDMmPQHFq'
 
 
 

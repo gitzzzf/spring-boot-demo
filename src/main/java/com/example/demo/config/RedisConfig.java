@@ -54,7 +54,8 @@ public class RedisConfig {
         // 第一步：构建RedisStandaloneConfiguration，用于下一步构建JedisConnectionFactory
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
         redisStandaloneConfiguration.setHostName(env.getProperty("spring.redis.host"));
-        redisStandaloneConfiguration.setPort(env.getProperty("spring.redis.port", Integer.TYPE));
+//        redisStandaloneConfiguration.setPort(env.getProperty("spring.redis.port", Integer.TYPE));
+        redisStandaloneConfiguration.setPort(6379);
         redisStandaloneConfiguration.setPassword(env.getProperty("spring.redis.password"));
         redisStandaloneConfiguration.setDatabase(14);
         // 第二步：构建factory
