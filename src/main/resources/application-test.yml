@@ -7,9 +7,10 @@ spring:
     username: root
     password:
   redis:
-    host: ******
-    port: ******
-    password: ******
+    # 这里连接的是test03, 公网访问：47.93.157.59，内网访问：10.30.139.235
+    host: 47.93.157.59
+    port: 2333
+    password: xtaaG9NfWEga
     jedis:
       pool:
         max-active: 10
