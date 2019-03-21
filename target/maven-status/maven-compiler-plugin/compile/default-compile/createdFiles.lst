@@ -1,0 +1,5 @@
+com/example/demo/DemoApplication.class
+com/example/demo/bean/ZzzfProperties.class
+com/example/demo/controller/UserController.class
+com/example/demo/bean/User.class
+com/example/demo/controller/DemoController.class

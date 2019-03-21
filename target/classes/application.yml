@@ -1,0 +1,54 @@
+com:
+  zzzf:
+    name: zhoufeng
+    sex: male
+    desc: name ${com.zzzf.name} sex ${com.zzzf.sex}
+    age: ${random.int}
+
+spring:
+  profiles:
+    active: prod
+  datasource:
+    druid:
+      # druid 连接池配置
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 5
+      min-idle: 5
+      max-active: 10
+      max-wait: 5000
+
+
+      # 后台管理页面servlet
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        url-pattern: /druid/*
+        reset-enable: false
+
+  # demo线程池配置
+  demoexecutor:
+    corePoolSize: 5
+    keepAliveSeconds: 30
+    maxPoolSize: 10
+    queueCapacity: 20
+
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.demo.bean.po
+  configuration:
+    default-statement-timeout: 50
+    map-underscore-to-camel-case: true
+
+# 日志
+logging:
+  config: classpath:log4j2.xml
+
+
+
+
+
+
+
+

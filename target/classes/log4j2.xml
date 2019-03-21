@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+     根节点Configuration有两个属性:status和monitorinterval,
+     有两个子节点:Appenders和Loggers(表明可以定义多个Appender和Logger).
+     status用来指定log4j本身的打印日志的级别.
+　　　monitorinterval用于指定log4j自动重新配置的监测间隔时间，单位是s,最小是5s.
+-->
+<Configuration status="WARN">
+    <Appenders>
+        <!-- 输出控制台的配置 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <!-- 文件输出格式-->
+        <File name="DemoLog" fileName="/Users/zhoufeng/temp/log/demo.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </File>
+
+        <!-- RollingFile类型日志 -->
+        <!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+        <!--
+            name:指定Appender的名字.
+　　　　　　　fileName:指定输出日志的目的文件带全路径的文件名.
+　　　　　　　PatternLayout:输出格式，不设置默认为:%m%n.
+　　　　　　　filePattern:指定新建日志文件的名称格式(就是存档的日志文件的名称格式)
+　　　　　　　Policies:指定滚动日志的策略，就是什么时候进行新建日志文件输出日志.
+        -->
+        <RollingFile name="RollingFileInfo" fileName="/Users/zhoufeng/temp/log/rollingDemo.log"
+        filePattern="/Users/zhoufeng/temp/log/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+
+            <!-- filter -->
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+
+            <!-- 日志输出格式 -->
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+
+            <!-- 指定滚动日志的策略，这里设定的是日志文件达到500MB的时候就存档 -->
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="500 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <!-- loggers下面常见的有两种节点:Root和Logger -->
+
+        <!-- 这里自己定义了一个logger，name名来源：@see DemoConstant -->
+        <!-- 这里的name属性的value也可以是一些类文件名，eg: com.example.demo.controller.CityController之类的-->
+        <Logger level="all" name="SPECIAL_LOGGER">
+            <!--Logger的子节点，用来指定该日志输出到哪个Appender,如果没有指定，就会默认继承自Root.
+                如果指定了，那么会在指定的这个Appender和Root的Appender中都会输出，
+                此时我们可以设置Logger的additivity="false"只在自定义的Appender中进行输出。-->
+            <AppenderRef ref="RollingFileInfo" />
+        </Logger>
+
+        <Root level="debug">
+            <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+            <logger name="org.springframework" level="INFO"></logger>
+            <logger name="org.mybatis" level="INFO"></logger>
+
+            <!-- Root的子节点，用来指定该日志输出到哪个Appender -->
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="DemoLog" />
+        </Root>
+
+    </Loggers>
+</Configuration>
+
