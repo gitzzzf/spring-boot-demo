@@ -33,6 +33,17 @@ spring:
     maxPoolSize: 10
     queueCapacity: 20
 
+  # dubbo
+#  dubbo:
+#    application:
+#      name: spring-boot-demo
+#    registry:
+#      address: zookeeper://127.0.0.1:2181
+#    protocol:
+#      name: dubbo
+#      port: 20880
+#    base-package: com.example.demo.dubbo
+
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
@@ -44,6 +55,10 @@ mybatis:
 # 日志
 logging:
   config: classpath:log4j2.xml
+
+
+
+
 
 
 

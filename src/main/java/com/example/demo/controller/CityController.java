@@ -4,11 +4,8 @@ import com.example.demo.bean.model.CityModel;
 import com.example.demo.bean.po.CityPO;
 import com.example.demo.redis.DemoRedisDAO;
 import com.example.demo.service.ICityService;
-import com.google.common.base.Optional;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import com.zzzf.demo.Test;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +33,7 @@ public class CityController {
     @ApiOperation(value = "获取简单城市信息", notes = "这是一个通过城市id获取城市信息的方法，id为0时，报参数错误")
     @RequestMapping(value = "/simple", method = RequestMethod.GET)
     public Object getSimpleCity(@RequestParam(value = "id") int id){
+        System.out.println(Test.myTest());
         if (id == 0){
             return "参数错误";
         }

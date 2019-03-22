@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="spring.boot.demo"/>
+
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!--具体实现该接口的 bean-->
+    <bean id="demoDubboService" class="com.example.demo.dubbo.DemoDubboServiceImpl" />
+    <!--使用 dubbo 协议实现定义好的com.zzzf.demo.IDemoDubboService接口-->
+    <dubbo:service interface="com.zzzf.demo.IDemoDubboService" ref="demoDubboService" protocol="dubbo">
+        <dubbo:method name="dubboTest" retries="0" timeout="10000" />
+    </dubbo:service>
+
+</beans>
