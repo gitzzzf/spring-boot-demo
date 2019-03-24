@@ -49,8 +49,15 @@ public class MyBatisConfig {
     }
 
     /**
-     * 使application.yml中"mybatis.configuration"相关的配置生效，如果不主动设置，由于@Order的配置的顺序不同，
-     * 将导致"mybatis.configuration"配置不能及时生效。
+     * 使application.yml中"mybatis.configuration"相关的配置生效。
+     * 如果只有一个数据源，没有必要去指定SqlSessionFactory 或 SqlSessionTemplate ,
+     * 因为 MapperScannerConfigurer 将会创建MapperFactoryBean，之后自动装配。
+     * 但是,如果你使用了一个以上的 DataSource，那 么自动装配可能会失效 。
+     * 这种情况下 ，你可以使用 sqlSessionFactoryBeanName 或 sqlSessionTemplateBeanName 属性来设置正确的 bean 名称来使用。
+     * 比如在spring-boot中在application.yml中配置了”mybatis.configuration“的一些属性，
+     * 在只有一个数据源，不需要配置SqlSessionFactory的时候，其实这些配置是自动装配了，
+     * 但是在多数据源的情况下，也就是说SqlSessionFactory需要指定数据源的时候，自动装配就失效了，
+     * 需要自己配置SqlSessionFactory的时候，把原来在”mybatis.configuration“中设置的一些属性自己加进来。
      */
     @Bean(name = "sessionConfiguration")
     @ConfigurationProperties("mybatis.configuration")
