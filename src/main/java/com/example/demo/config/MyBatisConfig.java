@@ -7,6 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -48,10 +49,22 @@ public class MyBatisConfig {
     }
 
     /**
+     * 使application.yml中"mybatis.configuration"相关的配置生效，如果不主动设置，由于@Order的配置的顺序不同，
+     * 将导致"mybatis.configuration"配置不能及时生效。
+     */
+    @Bean(name = "sessionConfiguration")
+    @ConfigurationProperties("mybatis.configuration")
+    public org.apache.ibatis.session.Configuration configuration(){
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        return configuration;
+    }
+
+    /**
      * SqlSessionFactoryBean
      */
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier("multipleDataSource") MultipleDataSource multipleDataSource){
+    public SqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier("multipleDataSource") MultipleDataSource multipleDataSource,
+                                                       @Qualifier("sessionConfiguration") org.apache.ibatis.session.Configuration configuration){
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(multipleDataSource);
         try {
@@ -71,6 +84,8 @@ public class MyBatisConfig {
              * resource patterns here: e.g. "classpath*:sqlmap/*-mapper.xml".
              */
             sqlSessionFactoryBean.setMapperLocations(resources);
+            // 设置在该sqlSessionFactory中生效的一些配置信息
+            sqlSessionFactoryBean.setConfiguration(configuration);
 
         }catch (Exception e){
 

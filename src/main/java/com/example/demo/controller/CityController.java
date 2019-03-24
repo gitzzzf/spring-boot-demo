@@ -68,4 +68,16 @@ public class CityController {
         return "success";
     }
 
+    @ApiOperation(value = "测试dispatch")
+    @RequestMapping(value = "/dispatch")
+    public Object dispatch(){
+        try {
+            CityPO cityPO = cityService.testDistributed();
+            return cityPO.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

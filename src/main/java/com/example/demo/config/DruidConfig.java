@@ -43,6 +43,7 @@ public class DruidConfig {
         DruidDataSource druidDataSource = builder.build(environment, "spring.datasource.druid");
         druidDataSource.setKeepAlive(true);
         druidDataSource.setMaxActive(11);
+
         return druidDataSource;
     }
 

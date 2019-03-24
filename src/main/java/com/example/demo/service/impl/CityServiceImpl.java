@@ -7,9 +7,10 @@ import com.example.demo.bean.others.DemoExecutorTask;
 import com.example.demo.bean.po.CityPO;
 import com.example.demo.constant.DemoConstant;
 import com.example.demo.dao.ICityDAO;
+import com.example.demo.distributed.DemoFutureDispatch;
 import com.example.demo.mq.MqSender;
+import com.example.demo.service.ICityDetailService;
 import com.example.demo.service.ICityService;
-import com.example.demo.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class CityServiceImpl implements ICityService {
 
     @Resource(name = "mqMessageSender")
     private MqSender mqSender;
+
+    @Resource
+    private ICityDetailService cityDetailService;
+
+    @Resource
+    private DemoFutureDispatch demoFutureDispatch;
 
     @Override
     @DemoAnnotation
@@ -91,5 +98,19 @@ public class CityServiceImpl implements ICityService {
         cityMsg.setProvinceId(2);
         cityMsg.setCityName("shanghai");
         mqSender.sendMsg(cityMsg, "rk.city");
+    }
+
+    @Override
+    @Transactional
+    public CityPO testDistributed() throws Exception{
+        // 获取代理类
+        ICityDetailService proxy = demoFutureDispatch.bean(cityDetailService);
+        // 代理类执行方法
+        proxy.getCityDetailByProvinceId(2);
+        // 执行自定义submit方法
+        Future<CityPO> cityPOFuture = demoFutureDispatch.submit();
+        CityPO cityPO = cityPOFuture.get();
+        System.out.println("========测试dispatch：" + cityPO.getProvinceId() + ", " + cityPO.getCityName() + "," + cityPO.getDescription());
+        return cityPO;
     }
 }

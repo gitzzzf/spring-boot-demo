@@ -73,11 +73,17 @@
 		</dependency>
 
 		<!-- druid 数据库连接池 -->
-		<dependency>
-			<groupId>com.xrxs</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.alibaba</groupId>-->
+			<!--<artifactId>druid</artifactId>-->
+			<!--<version>1.1.6</version>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>com.xrxs</groupId>-->
+			<!--<artifactId>druid-spring-boot-starter</artifactId>-->
+			<!--<version>1.0-SNAPSHOT</version>-->
+		<!--</dependency>-->
 
 		<!-- mysql连接驱动 -->
 		<dependency>
@@ -189,6 +195,11 @@
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
 			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
 		</dependency>
 
 	</dependencies>

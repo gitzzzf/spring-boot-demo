@@ -18,4 +18,6 @@ public interface ICityService {
     List<CityPO> getMoreCity();
 
     void testCityMq();
+
+    CityPO testDistributed() throws Exception;
 }
