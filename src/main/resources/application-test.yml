@@ -18,6 +18,8 @@ spring:
         min-idle: 0
         max-wait: 1000
         test-on-borrow: false
+  profiles:
+    active: test
 
 
 

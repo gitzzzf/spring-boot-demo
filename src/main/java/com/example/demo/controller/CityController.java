@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.example.demo.bean.model.CityModel;
 import com.example.demo.bean.po.CityPO;
 import com.example.demo.redis.DemoRedisDAO;
 import com.example.demo.service.ICityService;
 import com.zzzf.demo.Test;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,10 @@ public class CityController {
     private ICityService cityService;
     @Resource
     private DemoRedisDAO demoRedisDAO;
+    @NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+    private String nacos;
+    @NacosValue(value = "${zzzf.test:test02}", autoRefreshed = true)
+    private String nacos01;
 
     @ApiOperation(value = "获取简单城市信息", notes = "这是一个通过城市id获取城市信息的方法，id为0时，报参数错误")
     @RequestMapping(value = "/simple", method = RequestMethod.GET)
@@ -80,4 +86,9 @@ public class CityController {
         return null;
     }
 
+    @ApiOperation(value = "测试nacos")
+    @RequestMapping(value = "/nacos")
+    public Object nacos(){
+        return nacos + nacos01;
+    }
 }

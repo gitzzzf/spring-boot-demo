@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.alibaba.nacos.spring.core.env.NacosPropertySource;
 import com.example.demo.distributed.DemoFutureDispatch;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,14 @@ public class BeanConfig {
     public DemoFutureDispatch demoFutureDispatch(){
         DemoFutureDispatch dispatch = new DemoFutureDispatch();
         return dispatch;
+    }
+
+    @Bean(name = "demoNacosPropertySource")
+    public NacosPropertySource nacosPropertySource(){
+        NacosPropertySource nacos = new NacosPropertySource("1","2");
+        nacos.setDataId("");
+        return nacos;
+
 
     }
 }

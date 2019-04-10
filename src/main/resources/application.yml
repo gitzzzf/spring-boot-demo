@@ -5,6 +5,7 @@ com:
     desc: name ${com.zzzf.name} sex ${com.zzzf.sex}
     age: ${random.int}
 
+
 spring:
   profiles:
     active: prod
@@ -33,18 +34,6 @@ spring:
     maxPoolSize: 10
     queueCapacity: 20
 
-  # dubbo
-#  dubbo:
-#    application:
-#      name: spring-boot-demo
-#    registry:
-#      address: zookeeper://127.0.0.1:2181
-#    protocol:
-#      name: dubbo
-#      port: 20880
-#    base-package: com.example.demo.dubbo
-
-
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.example.demo.bean.po
@@ -55,6 +44,12 @@ mybatis:
 # 日志
 logging:
   config: classpath:log4j2.xml
+# 配置中心
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    namespace: b54efd5d-b36d-4906-bf51-03b842ff68d6
+
 
 
 
