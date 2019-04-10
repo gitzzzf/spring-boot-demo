@@ -20,12 +20,4 @@ public class BeanConfig {
         return dispatch;
     }
 
-    @Bean(name = "demoNacosPropertySource")
-    public NacosPropertySource nacosPropertySource(){
-        NacosPropertySource nacos = new NacosPropertySource("1","2");
-        nacos.setDataId("");
-        return nacos;
-
-
-    }
 }
