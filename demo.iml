@@ -84,7 +84,6 @@
     <orderEntry type="library" name="Maven: io.springfox:springfox-schema:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger-common:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-spring-web:2.2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.9.2" level="project" />
@@ -148,6 +147,7 @@
     <orderEntry type="library" name="Maven: com.alibaba.spring:spring-context-support:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.boot:nacos-config-spring-boot-autoconfigure:0.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.boot:nacos-spring-boot-base:0.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba.boot:nacos-config-spring-boot-actuator:0.2.1" level="project" />
   </component>
 </module>
